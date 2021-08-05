@@ -11,9 +11,9 @@ import { currentWeatherApi } from '../interfaces/currentWeatherApi';
 })
 export class ApiService {
 
-  private locationHowToCompletUrl = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
-  private fiveDaysDailyForecastsUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/"
-  private currentWeatherUrl = "http://dataservice.accuweather.com/currentconditions/v1/"
+  private locationHowToCompletUrl = "https://dataservice.accuweather.com/locations/v1/cities/autocomplete"
+  private fiveDaysDailyForecastsUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"
+  private currentWeatherUrl = "https://dataservice.accuweather.com/currentconditions/v1/"
   constructor(private http: HttpClient) {
 
 
