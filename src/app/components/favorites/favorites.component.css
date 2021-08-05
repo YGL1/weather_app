@@ -1,0 +1,21 @@
+
+ul
+{   
+    position: relative;
+}
+li{
+ 
+    
+    float: left;
+    margin: 10px;
+    width: 240px;
+    height: 220px;
+    list-style: none;
+    padding-left: 150px;
+    padding-top: 70px;
+}
+  
+a
+{  
+    text-decoration: none;
+}

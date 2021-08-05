@@ -1,0 +1,33 @@
+<div class="wrap">
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill" *ngIf="city!=undefined">
+      <mat-label>City</mat-label>
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput MatFormFieldControl
+        [formControl]="searchControl" [matAutocomplete]="auto" [(ngModel)]="city.name" >
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let city of cities " [value]="city.name" (blur)="getCityFromCities()">
+          {{city.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <div is="wrapcity" class="city">
+    <p *ngIf="city!=undefined">{{city.name}}</p>
+    <p>{{currentWeathe.Temperature.Imperial.Value}}</p>
+    <h1>{{currentWeathe.WeatherText}}</h1>
+
+  </div>
+  <div>
+    <ul *ngFor="let day of days">
+      <day [day]="day" clas="day"></day>
+    </ul>
+  </div>
+  <div>
+    <button *ngIf="!this.isFavoriteCity()" mat-raised-button color="primary" (click)="addFavoriteCity()" class="button">
+      <mat-icon>thumb_up_alt</mat-icon>add to favorites
+    </button>
+    <button *ngIf="this.isFavoriteCity()" mat-raised-button color="primary" (click)="deleteFavoriteCity()"
+      class="button">remove from favorites</button>
+  
+  </div>
+</div>

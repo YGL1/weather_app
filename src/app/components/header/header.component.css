@@ -1,0 +1,22 @@
+mat-toolbar{
+  background-color:teal;
+  color: white; 
+  position: fixed; 
+}
+span
+{ display: flex;
+    justify-content:space-around;
+    position: relative; 
+    padding-left: 5%;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.link:hover
+  {  
+ 
+    text-shadow: offset blur 20px black ;
+  }
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  

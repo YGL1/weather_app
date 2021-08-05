@@ -1,0 +1,17 @@
+<div *ngFor="let favoriteCity of favoriteCities">
+
+    <a routerLink="/main/{{favoriteCity.id}}">
+        <favorite-city [city]="favoriteCity"></favorite-city>
+    </a>
+</div>
+
+
+<!-- <mat-selection-list  [multiple]="false">
+    <mat-list-option *ngFor="let favoriteCity of favoriteCities" [value]="favoriteCity">
+      <favorite-city [city]="favoriteCity"></favorite-city>
+    </mat-list-option>
+  </mat-selection-list>
+   -->
+  <!-- <p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+  </p> -->
