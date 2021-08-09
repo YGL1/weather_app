@@ -18,7 +18,7 @@ export class FavoriteCityComponent implements OnInit {
   currentWeathe: currentWeather = { WeatherIcon: 1, WeatherText: 'cloudy', Temperature: this.tempCurrentWeather };
 
   ngOnInit(): void {
-    //this.getcurrentWeather();
+   this.getcurrentWeather();
   }
 
 
@@ -26,7 +26,6 @@ export class FavoriteCityComponent implements OnInit {
     this.apiSevice.getCurrentWeather(this.city.id).subscribe
       (
         weather => {
-          console.log("this is the weather today: " + weather[0].WeatherText)
           let w: currentWeather = { Temperature: weather[0].Temperature, WeatherText: weather[0].WeatherText, WeatherIcon: weather[0].WeatherIcon }; this.currentWeathe = w
         }
       )

@@ -1,13 +1,13 @@
 
-ul
+mat-list
 {   
-    position: relative;
+    margin-block-start: 7%;
 }
 li{
  
     
     float: left;
-    margin: 10px;
+    margin: 5%;
     width: 240px;
     height: 220px;
     list-style: none;

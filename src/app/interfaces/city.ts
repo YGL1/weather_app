@@ -1,5 +1,5 @@
 export interface City {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     //currentWeather:number;
 }

@@ -1,8 +1,7 @@
 <mat-card>
-<p>{{day.name | date:'EEE'}}</p>
-
-<p>
- {{day.temperature.Maximum.Value}}
-</p>
-</mat-card>
-
+    <p>{{day.name | date:'EEE'}}</p>
+    <p *ngIf="day.temperature.Maximum.Value!=undefined">
+     {{day.temperature.Maximum.Value}}
+    </p>
+    </mat-card>
+    

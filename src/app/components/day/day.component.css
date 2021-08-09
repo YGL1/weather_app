@@ -6,8 +6,8 @@ mat-card{
     max-height: 100px;
     height: 100%;
     position: relative; 
-    margin: 20px;
 }
+
 p{ 
    font-size: 200%;
    margin: 10%;
