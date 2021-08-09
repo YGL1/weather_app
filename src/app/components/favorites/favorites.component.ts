@@ -8,7 +8,7 @@ import { FavoriteCitiesService } from 'src/app/services/favorite-cities.service'
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  favoriteCities: City[] = [{id:'0', name:'uhu'}];
+  favoriteCities: City[] | undefined;
   constructor(private favoriteCityServise: FavoriteCitiesService) { }
   getFavoriteCities() 
   {

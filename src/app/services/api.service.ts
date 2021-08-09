@@ -11,25 +11,30 @@ import { currentWeatherApi } from '../interfaces/currentWeatherApi';
 })
 export class ApiService {
 
-  private locationHowToCompletUrl = "https://dataservice.accuweather.com/locations/v1/cities/autocomplete"
-  private fiveDaysDailyForecastsUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"
-  private currentWeatherUrl = "https://dataservice.accuweather.com/currentconditions/v1/"
+  private locationHowToCompletUrl = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
+  private fiveDaysDailyForecastsUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/"
+  private currentWeatherUrl = "http://dataservice.accuweather.com/currentconditions/v1/"
   constructor(private http: HttpClient) {
 
 
   }
   getLocationAutocomlete(city: string): Observable<locationAutocomplete[]> {
-    let params = new HttpParams().set("apikey", "	zkVZhpxNjNJ3XDsSAX8snMd9N3LME5Yw ").set("q", city);
+    let params = new HttpParams().set("apikey", "		XRIHMR74K4iobUY9KpqO6URt2Eb3z7Uo ").set("q", city);
     return this.http.get<locationAutocomplete[]>(this.locationHowToCompletUrl,{ params:params})
   }
-  get5DaysDailyForecast(cityId:string):Observable<fiveDaysForecast>
-  {
-    let params = new HttpParams().set("apikey", "	zkVZhpxNjNJ3XDsSAX8snMd9N3LME5Yw ");
+  get5DaysDailyForecast(cityId:string|undefined):Observable<fiveDaysForecast>
+  { if (cityId == undefined) {
+    //todo: console.error();
+  }
+    let params = new HttpParams().set("apikey", "	XRIHMR74K4iobUY9KpqO6URt2Eb3z7Uo ");
     return this.http.get<fiveDaysForecast>(this.fiveDaysDailyForecastsUrl+cityId,{ params:params})
   }
-  getCurrentWeather(cityId:string):Observable<currentWeatherApi[]>
+  getCurrentWeather(cityId:string|undefined):Observable<currentWeatherApi[]>
   {
-    let params = new HttpParams().set("apikey", "	zkVZhpxNjNJ3XDsSAX8snMd9N3LME5Yw ");
+    if (cityId == undefined) {
+      //todo: console.error();
+    }
+    let params = new HttpParams().set("apikey", "		XRIHMR74K4iobUY9KpqO6URt2Eb3z7Uo ");
     return this.http.get<currentWeatherApi[]>(this.currentWeatherUrl+cityId,{ params:params})
   }
 }

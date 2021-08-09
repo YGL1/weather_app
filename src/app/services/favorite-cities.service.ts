@@ -22,7 +22,7 @@ export class FavoriteCitiesService {
   }
 
   addfavoriteCity(favoriteCity: City) {
-    if (!this.isFavorite(favoriteCity.id)) {
+    if (favoriteCity != undefined && !this.isFavorite(favoriteCity.id)) {
       this.favoriteCities = this.getfavoriteCities();
       if (this.favoriteCities == null) {
         this.favoriteCities = [favoriteCity]
@@ -34,7 +34,10 @@ export class FavoriteCitiesService {
   }
 
 
-  deletefavoriteCity(favoriteCityId: string) {
+  deletefavoriteCity(favoriteCityId: string|undefined) {
+    if (favoriteCityId == undefined) {
+      //todo: console.error();
+    }
     if (this.isFavorite(favoriteCityId)) {
 
       this.favoriteCities = this.getfavoriteCities();
@@ -50,8 +53,11 @@ export class FavoriteCitiesService {
 
 
 
-  isFavorite(id: string): boolean {
+  isFavorite(id: string | undefined): boolean {
     this.favoriteCities = this.getfavoriteCities();
+    if (id == undefined) {
+      //todo: console.error();
+    }
 
     if (this.favoriteCities == null || this.favoriteCities.length < 1) { return false; }
     return this.favoriteCities.filter(x => x.id === id) != null && this.favoriteCities.filter(x => x.id === id).length > 0;

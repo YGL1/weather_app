@@ -23,7 +23,8 @@ export class MainComponent implements OnInit {
 
   constructor(private favoriteCityServise: FavoriteCitiesService, private apiSevice: ApiService, private route: ActivatedRoute, private currentWeatheService: CurrentWeatherService) { }
   @Input()
-  city: City | undefined;
+  city: City={id:"1", name:"Tel Aviv"};
+  current:City ={id:"1",name:"Tel Aviv"};
   cities: City[] = [];
 
 
@@ -37,9 +38,9 @@ export class MainComponent implements OnInit {
 
 
 
-////exapmle-withOutApi    
-  imperial: imperial = { Unit: 'c', UnitType: 45, Value: 3 };
-  metric: metric = { Unit: 'c', UnitType: 45, Value: 3 };
+  ////exapmle-withOutApi    
+  imperial: imperial = { Unit: 'c', UnitType: 45, Value: 30 };
+  metric: metric = { Unit: 'c', UnitType: 45, Value: 30 };
   tempCurrentWeather: temperatureCurrentWeather = { Imperial: this.imperial, Metric: this.metric }
   currentWeathe: currentWeather = { WeatherIcon: 1, WeatherText: 'cloudy', Temperature: this.tempCurrentWeather };
   ////#end
@@ -50,11 +51,11 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.initCity();
-    this.searchControl.valueChanges.subscribe(v => { if (v.length > 1) { this.getCitiesAutoComplete(v); this.getCityFromCities(); }});
+    // this.initCity();
+    // this.searchControl.valueChanges.subscribe(v => { if (v.length > 3) { this.getCitiesAutoComplete(v); this.getCityFromCities(); } });
 
-    this.get5DaysWeaterForcast()
-    this.getcurrentWeather();
+    // this.get5DaysWeaterForcast()
+    // this.getcurrentWeather();
 
     this.searchControl.valueChanges.subscribe(v => console.log(this.searchControl.valid))
 
@@ -67,12 +68,11 @@ export class MainComponent implements OnInit {
       console.log("favorited!!!");
       this.city = this.favoriteCityServise.getfavoriteCity(cityId);
     }
-    else {
-      this.getCitiesAutoComplete(this.searchControl.value);
+    else {  
+      console.log("not favorited!!!");
+      this.getCitiesAutoComplete("Tel Aviv");
       this.getCityFromCities();
     }
-    console.log(this.city);
-
   }
 
 
@@ -89,26 +89,30 @@ export class MainComponent implements OnInit {
 
   getCitiesAutoComplete(location: string) {
     this.cities = [];
-    this.apiSevice.getLocationAutocomlete(location).subscribe(
-      location => location.forEach(i => {
-        let c: City =
-        {
-          id: i.Key, name: i.LocalizedName
-        };
-        this.cities.push(c)
-      }
+    this.apiSevice.getLocationAutocomlete(location).subscribe
+      (
+        location => {
+          location.forEach
+          (i => {
+            let c: City =
+            {
+              id: i.Key, name: i.LocalizedName
+            };
+            this.cities.push(c)
+            console.log()
+            this.current = c;
+            console.log("current: " + this.current.id)
+          }
+          )
+        
+        }
       )
-    )
+
   }
   getCityFromCities() {
-    this.getCitiesAutoComplete(this.searchControl.value);
-    let city: City = { id: '0', name: 'bhughui' };
-    this.city=city;
-    this.cities.forEach((c) => {
-      console.log(c.name === <string>(this.searchControl.value));
-      if (c.name === <string>(this.searchControl.value)) { city = c; console.log(city) }
-      this.city = city;
-    })
+    this.city = this.current;
+    if(this.city!=undefined)
+    console.log("city-id: " + this.city.id)
   }
 
   get5DaysWeaterForcast() {
@@ -131,7 +135,6 @@ export class MainComponent implements OnInit {
       this.apiSevice.getCurrentWeather(this.city.id).subscribe
         (
           weather => {
-            console.log("this is the weather today: " + weather[0].WeatherText)
             let w: currentWeather = { Temperature: weather[0].Temperature, WeatherText: weather[0].WeatherText, WeatherIcon: weather[0].WeatherIcon }; this.currentWeathe = w
           }
         )

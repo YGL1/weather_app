@@ -1,0 +1,8 @@
+h2{color: black}
+p{color: black}
+div{
+    display: flex;
+    flex: 2%;
+    justify-content: space-around;
+   
+}
