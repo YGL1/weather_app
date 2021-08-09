@@ -51,11 +51,11 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.initCity();
-    // this.searchControl.valueChanges.subscribe(v => { if (v.length > 3) { this.getCitiesAutoComplete(v); this.getCityFromCities(); } });
+    this.initCity();
+    this.searchControl.valueChanges.subscribe(v => { if (v.length > 3) { this.getCitiesAutoComplete(v); this.getCityFromCities(); } });
 
-    // this.get5DaysWeaterForcast()
-    // this.getcurrentWeather();
+    this.get5DaysWeaterForcast()
+    this.getcurrentWeather();
 
     this.searchControl.valueChanges.subscribe(v => console.log(this.searchControl.valid))
 
